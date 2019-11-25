@@ -16,12 +16,24 @@ class Tree {
     this.root = new Node(null, null, data)
   }
 
+  addLeftNode(node, data) {
+    node.left = new Node(null, null, data)
+  }
+
+  addRightNode(node, data) {
+    node.right = new Node(null, null, data)
+  }
+
   printRoot() {
     console.log(this.root.data)
+    console.log(this.root.left.data)
+    console.log(this.root.right.data)
   }
 }
 
 let tree = new Tree()
 tree.createRoot(200)
+tree.addLeftNode(this.root, 500)
+tree.addRightNode(this.root, 700)
 
 tree.printRoot()
