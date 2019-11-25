@@ -33,7 +33,7 @@ class Tree {
 
 let tree = new Tree()
 tree.createRoot(200)
-tree.addLeftNode(this.root, 500)
-tree.addRightNode(this.root, 700)
+tree.addLeftNode(tree.root, 500)
+tree.addRightNode(tree.root, 700)
 
 tree.printRoot()
