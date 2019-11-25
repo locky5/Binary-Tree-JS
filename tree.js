@@ -26,14 +26,68 @@ class Tree {
 
   printRoot() {
     console.log(this.root.data)
-    console.log(this.root.left.data)
-    console.log(this.root.right.data)
   }
+
+  preOrder() {
+    preOrderHelper(this.root)
+  }
+
+  inOrder() {
+    inOrderHelper(this.root)
+  }
+
+  postOrder() {
+    postOrderHelper(this.root)
+  }
+}
+
+//**CONSOLE.LOG IS WHERE YOU VISIT THE ROOT**//
+
+//print first root node --> preOrder(left node of first root node) by printing root node and then left node --> preOrder(right node)
+//used to encounter all roots before leaves
+function preOrderHelper(root) {
+   if (root !== null) {
+      console.log(root.data) //visit the root first
+      preOrderHelper(root.left) //traverse the left subtree starting with the left node
+      preOrderHelper(root.right) //traverse the right subtree starting with the right node
+   }
+}
+
+//print left (most) node --> print root node --> inOrder(right node) --> once done with left subtree print first root node --> inOrder(right subtree)
+//used to make the tree a specific sequence
+function inOrderHelper(root) {
+   if (root !== null) {
+      inOrderHelper(root.left) //traverse the left subtree starting with the left node
+      console.log(root.data) //visit the root
+      inOrderHelper(root.right) //traverse the right subtree starting with the left node
+   }
+}
+
+//print left (most) node --> go back to root and transverse to right node --> postOrder(right node) --> once done with right subtree postOrder(right subtree) --> print first root data
+//used to encounter all leaves before roots
+function postOrderHelper(root) {
+   if (root !== null) {
+      postOrderHelper(root.left) //traverse the left subtree starting with the left node first
+      postOrderHelper(root.right) //traverse the right subtree starting with the left node
+      console.log(root.data) //visit the root
+   }
 }
 
 let tree = new Tree()
 tree.createRoot(200)
 tree.addLeftNode(tree.root, 500)
 tree.addRightNode(tree.root, 700)
+tree.addLeftNode(tree.root.left, 600)
+tree.addRightNode(tree.root.right, 800)
+tree.addLeftNode(tree.root.left.left, 1000)
+tree.addRightNode(tree.root.left, 950)
+tree.addLeftNode(tree.root.right, 720)
+tree.addRightNode(tree.root.right.right, 440)
+tree.addLeftNode(tree.root.left.left.left, 560)
+tree.addRightNode(tree.root.right.right.right, 810)
 
-tree.printRoot()
+// tree.printRoot()
+
+tree.postOrder(tree.root)
+console.log('/////')
+tree.inOrder(tree.root)
