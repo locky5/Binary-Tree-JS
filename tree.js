@@ -24,6 +24,21 @@ class Tree {
     node.right = new Node(null, null, data)
   }
 
+  maxDepth() {
+    if (this.root === null) {
+      console.log(0)
+    }
+
+    let max = function(node, sum) {
+      if (node === null) { //bottom of tree
+        return sum
+      }
+
+      return Math.max(max(node.left, sum + 1), max(node.right, sum + 1)) //every time you recursively go through the left or right subtree, add one to the final sum
+    }
+    console.log(max(this.root, 0))
+  }
+
   printRoot() {
     console.log(this.root.data)
   }
@@ -41,7 +56,8 @@ class Tree {
   }
 }
 
-//**CONSOLE.LOG IS WHERE YOU VISIT THE ROOT**//
+//**CONSOLE.LOG IS WHERE YOU VISIT THE ROOT**
+//Runtime for all transversals is O(n)
 
 //print first root node --> preOrder(left node of first root node) by printing root node and then left node --> preOrder(right node)
 //used to encounter all roots before leaves
@@ -91,3 +107,5 @@ tree.addRightNode(tree.root.right.right.right, 810)
 tree.postOrder(tree.root)
 console.log('/////')
 tree.inOrder(tree.root)
+console.log('/////')
+tree.maxDepth()
