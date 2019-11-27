@@ -103,7 +103,8 @@ tree.addLeftNode(tree.root.left.left.left, 560)
 tree.addRightNode(tree.root.right.right.right, 810)
 
 // tree.printRoot()
-
+tree.preOrder(tree.root)
+console.log('/////')
 tree.postOrder(tree.root)
 console.log('/////')
 tree.inOrder(tree.root)
